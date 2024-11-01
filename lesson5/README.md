@@ -2,7 +2,7 @@
 
 `node deploy.js`
 
-### json文件必备
+### json 文件必备
 
 ```json
 async function main() {
@@ -74,39 +74,38 @@ yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleSt
 ```json
 // package.json
 {
-  "name": "ethers-simple-storage-fcc",
-  "version": "1.0.0",
-  "description": "",
-  "dependencies": {
-    "dotenv": "^14.2.0",
-    "ethers": "^6.2.3",
-    "prettier": "^2.5.1",
-    "solc": "0.8.7-fixed"
-  },
-  "scripts": {
-    "compile": "solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"
-  }
+    "name": "ethers-simple-storage-fcc",
+    "version": "1.0.0",
+    "description": "",
+    "dependencies": {
+        "dotenv": "^14.2.0",
+        "ethers": "^6.2.3",
+        "prettier": "^2.5.1",
+        "solc": "0.8.7-fixed"
+    },
+    "scripts": {
+        "compile": "solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"
+    }
 }
-
 ```
 
 ## Ganache
 
-Ganache是一个可以在本地模拟以太坊环境的客户端，新手入门时可以使用Ganache进行开发，因为其免费（虚拟的交易）且响应速度快，可以节省大量的开发时间，让开发者更专注业务本身。下载地址：[https://www.trufflesuite.com/ganache](https://kanchuan.com/go?to=https%3A%2F%2Fwww.trufflesuite.com%2Fganache)
+Ganache 是一个可以在本地模拟以太坊环境的客户端，新手入门时可以使用 Ganache 进行开发，因为其免费（虚拟的交易）且响应速度快，可以节省大量的开发时间，让开发者更专注业务本身。下载地址：[https://www.trufflesuite.com/ganache](https://kanchuan.com/go?to=https%3A%2F%2Fwww.trufflesuite.com%2Fganache)
 
-下载对应系统的版本安装即可。Ganache很容易上手，可以通过主页面的「QUICKSTART」一键启动一个本地以太坊环境。在设置的SERVER标签页，有RPC服务的地址和端口号，记下来后续会用到。
+下载对应系统的版本安装即可。Ganache 很容易上手，可以通过主页面的「QUICKSTART」一键启动一个本地以太坊环境。在设置的 SERVER 标签页，有 RPC 服务的地址和端口号，记下来后续会用到。
 
-[Dapp开发利器--Truffle三剑客之Ganache-CSDN博客](https://blog.csdn.net/weixin_39430411/article/details/104248037)
+[Dapp 开发利器--Truffle 三剑客之 Ganache-CSDN 博客](https://blog.csdn.net/weixin_39430411/article/details/104248037)
 
 ## ethers
 
-ethers.js库旨在为以太坊区块链及其生态系统提供一个小而完整的 JavaScript API 库，它最初是与 [ethers.io](https://ethers.io/) 一起使用，现在已经扩展为更通用的库
+ethers.js 库旨在为以太坊区块链及其生态系统提供一个小而完整的 JavaScript API 库，它最初是与 [ethers.io](https://ethers.io/) 一起使用，现在已经扩展为更通用的库
 
 `yarn add ethers`
 
 [ethers.js 中文文档](https://learnblockchain.cn/ethers_v5/)
 
-我们需要在deploy.js中导入ethers
+我们需要在 deploy.js 中导入 ethers
 
 `const ethers = require("ethers");`
 
@@ -125,11 +124,11 @@ async function main() {
 
 我们已有连接上了本地区块链网络，也拥有了一个钱包，因此我们可以将自己刚刚生成的合约部署到区块链网络上。
 
-我们需要用到刚刚生成的abi和bin。
+我们需要用到刚刚生成的 abi 和 bin。
 
-部署合约需要用到fs包
+部署合约需要用到 fs 包
 
-### fs包
+### fs 包
 
 `yarn add fs-extra`
 
@@ -153,13 +152,11 @@ async function main() {
 }
 ```
 
-`ethers.ContractFactory(abi,binary,wallet)`返回用来部署合约的对象，是promise型的，因此可以`await contractFactory.deploy()`其返回类型也是promise
+`ethers.ContractFactory(abi,binary,wallet)`返回用来部署合约的对象，是 promise 型的，因此可以`await contractFactory.deploy()`其返回类型也是 promise
 
 现在你可以部署合约了
 
 `node deploy.js`
-
-
 
 ### 等待区块
 
@@ -218,7 +215,7 @@ async function main() {
 }
 ```
 
-`wallet.getTransactionCount()`获取nonce，每个新区块都会使nonce+1
+`wallet.getTransactionCount()`获取 nonce，每个新区块都会使 nonce+1
 
 `wallet.signTransaction(tx)`对交易进行签名
 
@@ -238,11 +235,11 @@ currentFavoriteNumber = await contract.retrieve()
 console.log(`New Favorite Number: ${currentFavoriteNumber}`)
 ```
 
-`const contract = await contractFactory.deploy()`返回的contract对象具有合约里的abi，所以可以直接调用来实现和合约的交互
+`const contract = await contractFactory.deploy()`返回的 contract 对象具有合约里的 abi，所以可以直接调用来实现和合约的交互
 
 ### .env--Environment Variable File
 
-我们将某些环境变量写入.env文件中
+我们将某些环境变量写入.env 文件中
 
 ```c++
 PRIVATE_KEY=11ee3108a03081fe260ecdc106554d09d9d1209bcafd46942b10e02943effc4a
@@ -336,13 +333,13 @@ require("dotenv").config()
 
 async function main() {
     const wallet = new ethers.Wallet(process.env.PRIVATE_KEY)
-    
+
     const encryptedJsonKey = await wallet.encrypt(
         process.env.PRIVATE_KEY_PASSWORD,
         process.env.PRIVATE_KEY
     )
-    // In later version (^6.2.3 as of this commit) of etherjs, PRIVATE_KEY is inferred from wallet, so there is no need to 
-    // pass private key again. 
+    // In later version (^6.2.3 as of this commit) of etherjs, PRIVATE_KEY is inferred from wallet, so there is no need to
+    // pass private key again.
     //     const encryptedJsonKey = await wallet.encrypt(
     //         process.env.PRIVATE_KEY_PASSWORD,
     //  )
@@ -372,9 +369,9 @@ main()
     wallet = wallet.connect(provider);
 ```
 
-之后我们就可以把.env中的password删除。
+之后我们就可以把.env 中的 password 删除。
 
-以后我们可以用以下脚本运行deploy.js
+以后我们可以用以下脚本运行 deploy.js
 
 ```shell
 PRIVATE_KEY_PASSWORD=password node deploy.js
@@ -389,10 +386,10 @@ history -c //记得清除历史记录，防止有人入侵电脑窃取数据
 
 ![image-20241026154144737](assets/image-20241026154144737.png)
 
-在这里我们获得测试网的url
+在这里我们获得测试网的 url
 
 ![image-20241026154407720](assets/image-20241026154407720.png)
 
-在metamask查看密钥。
+在 metamask 查看密钥。
 
-并将.env中的网址和密钥替换为这个即可
+并将.env 中的网址和密钥替换为这个即可

@@ -34,7 +34,7 @@ describe("SimpleStorage", function () {
         const expectedFavoriteNumber = "16"
         const transactionResponse = await simpleStorage.addPerson(
             expectedPersonName,
-            expectedFavoriteNumber,
+            expectedFavoriteNumber
         )
         await transactionResponse.wait(1)
         const { favoriteNumber, name } = await simpleStorage.people(0)
