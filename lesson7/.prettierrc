@@ -5,5 +5,4 @@
     "semi": false,
     "plugins": ["prettier-plugin-solidity"],
     "solidity": "0.8.7"
-    
 }
